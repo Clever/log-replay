@@ -23,15 +23,15 @@ func init() {
 func main() {
 	flag.Parse()
 
-	var scanner *bufio.Scanner
+	var scanner *bufio.Reader
 	if inputFile != "" {
 		fd, err := os.Open(inputFile)
 		if err != nil {
 			log.Fatalf("error opening input file: %s", err)
 		}
-		scanner = bufio.NewScanner(fd)
+		scanner = bufio.NewReader(fd)
 	} else {
-		scanner = bufio.NewScanner(os.Stdin)
+		scanner = bufio.NewReader(os.Stdin)
 	}
 
 	readChan := make(chan string)
@@ -39,12 +39,14 @@ func main() {
 	wg.Add(1)
 	go output(&wg, readChan, speed)
 
-	for scanner.Scan() {
-		line := scanner.Text()
-		readChan <- line
-	}
-	if err := scanner.Err(); err != nil {
-		log.Fatalf("error reading input: %s", err)
+	for {
+		line, err := scanner.ReadBytes('\n')
+		strLine := string(line) 
+		if err != nil {
+			log.Fatalf("error reading input: %s", err)
+		}
+		readChan <- strLine
+
 	}
 	close(readChan)
 	wg.Wait()
