@@ -6,6 +6,8 @@
 # Folders
 _obj
 _test
+build
+bin
 
 # Architecture specific extensions/prefixes
 *.[568vq]
