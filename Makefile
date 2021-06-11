@@ -2,7 +2,7 @@ include golang.mk
 .DEFAULT_GOAL := test # override default goal set in library makefile
 
 
-GIT_USER = rakista112
+GIT_USER = Clever
 VERSION := $(shell cat VERSION)
 SHELL := /bin/bash
 PKG = github.com/$(GIT_USER)/log-replay
