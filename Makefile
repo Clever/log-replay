@@ -13,7 +13,7 @@ COMPRESSED_BUILDS := $(BUILDS:%=%.tar.gz)
 RELEASE_ARTIFACTS := $(COMPRESSED_BUILDS:build/%=release/%)
 .PHONY: test $(PKGS) clean release
 
-$(eval $(call golang-version-check,1.10))
+$(eval $(call golang-version-check,1.13))
 
 all: test build
 
@@ -40,8 +40,5 @@ release: $(RELEASE_ARTIFACTS)
 clean:
 	rm -rf build release
 
-
-
-
-install_deps: golang-dep-vendor-deps
-	$(call golang-dep-vendor)
+install_deps:
+	go mod vendor
