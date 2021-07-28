@@ -13,7 +13,7 @@ COMPRESSED_BUILDS := $(BUILDS:%=%.tar.gz)
 RELEASE_ARTIFACTS := $(COMPRESSED_BUILDS:build/%=release/%)
 .PHONY: test $(PKGS) clean release
 
-$(eval $(call golang-version-check,1.10))
+$(eval $(call golang-version-check,1.13))
 
 all: test build
 
