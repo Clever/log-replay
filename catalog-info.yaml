@@ -3,9 +3,9 @@ kind: Component
 metadata:
   name: log-replay
   description: Replays log files at a given speed
-  owner: unknown
+  owner: eng-infra
 spec:
   type: unknown
   lifecycle: production
-  owner: unknown
+  owner: eng-infra
   system: Clever
